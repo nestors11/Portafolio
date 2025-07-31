@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Nestor Steven Piraquive Garzón</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #1e293b);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #f8fafc;
+            scroll-behavior: smooth;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Animated gradient background */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 50%;
+            animation: float-particle 20s linear infinite;
+        }
+        
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #8b5cf6, #3b82f6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientTextShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientTextShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .card-hover:hover::before {
+            left: 100%;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.4);
+        }
+        
+        .tech-icon {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .tech-icon:hover {
+            transform: scale(1.3) rotate(360deg);
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+        
+        .hero-image {
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+            background-size: 400% 400%;
+            border-radius: 50%;
+            z-index: -1;
+            animation: gradientRotate 3s linear infinite;
+            filter: blur(20px);
+            opacity: 0.7;
+        }
+        
+        @keyframes gradientRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .project-card {
+            perspective: 1000px;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .project-inner {
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+        
+        .project-card:hover .project-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .project-front, .project-back {
+            backface-visibility: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+        
+        .project-back {
+            transform: rotateY(180deg);
+        }
+        
+        /* Glowing buttons */
+        .glow-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .glow-button:hover::before {
+            left: 100%;
+        }
+        
+        .glow-button:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        /* Section backgrounds with glass effect */
+        .glass-section {
+            background: rgba(30, 41, 59, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        /* Typing animation */
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #3b82f6;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #3b82f6; }
+        }
+        
+        /* Pulse animation for icons */
+        .pulse-icon {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Enhanced about image animation */
+        .about-image {
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981, #f59e0b);
+            background-size: 300% 300%;
+            border-radius: 24px;
+            z-index: -1;
+            animation: aboutImageGlow 4s ease-in-out infinite;
+            filter: blur(15px);
+            opacity: 0.6;
+        }
+        
+        .about-image:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 30px 60px -12px rgba(59, 130, 246, 0.5);
+        }
+        
+        @keyframes aboutImageGlow {
+            0%, 100% { 
+                background-position: 0% 50%;
+                transform: rotate(0deg);
+            }
+            25% { 
+                background-position: 100% 50%;
+                transform: rotate(1deg);
+            }
+            50% { 
+                background-position: 100% 100%;
+                transform: rotate(0deg);
+            }
+            75% { 
+                background-position: 0% 100%;
+                transform: rotate(-1deg);
+            }
+        }
+        
+        /* AOS custom animation for about image */
+        [data-aos="fade-up-scale"] {
+            transform: translateY(30px) scale(0.9);
+            opacity: 0;
+            transition-property: transform, opacity;
+        }
+        
+        [data-aos="fade-up-scale"].aos-animate {
+            transform: translateY(0px) scale(1);
+            opacity: 1;
+        }
+        
+        /* Form validation styles */
+        .form-field {
+            position: relative;
+        }
+        
+        .form-field.error input,
+        .form-field.error textarea {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+        }
+        
+        .form-field.success input,
+        .form-field.success textarea {
+            border-color: #10b981;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+        }
+        
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            animation: slideInError 0.3s ease-out;
+        }
+        
+        @keyframes slideInError {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Success Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.7) translateY(50px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modal-overlay.show .modal-content {
+            transform: scale(1) translateY(0);
+        }
+        
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            animation: modalShine 2s infinite;
+        }
+        
+        @keyframes modalShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(45deg, #10b981, #06b6d4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            animation: successPulse 2s infinite;
+        }
+        
+        @keyframes successPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 20px rgba(16, 185, 129, 0);
+            }
+        }
+        
+        .loading-spinner {
+            border: 3px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #3b82f6;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .btn-loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Floating particles background -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-slate-900/40 backdrop-blur-lg z-50 shadow-lg border-b border-slate-700/30 rounded-b-2xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="#home" class="text-2xl font-bold gradient-text pulse-icon cursor-pointer transition-all duration-300 hover:scale-110">Nestors11</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white">Sobre mí</a>
+                        <a href="#skills" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white">Habilidades</a>
+                        <a href="#projects" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white">Proyectos</a>
+                        <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white">Contacto</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-slate-800/70 backdrop-blur-lg rounded-b-2xl border-b border-slate-700/30">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-white">Sobre mí</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-white">Habilidades</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-white">Proyectos</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Hola, soy <span class="gradient-text typewriter">Nestor Steven</span></h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6">Ingeniero de Sistemas y Computación</h2>
+                <p class="text-lg text-gray-300 mb-8">Estudiante de Ingeniería de Sistemas y Computación en la Universidad Nacional de Colombia. Especializado en desarrollo web con React.js, Next.js y tecnologías backend como Python y Java. Experiencia en bases de datos relacionales, Docker y Kubernetes.</p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="glow-button px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-medium hover:opacity-90 transition-all duration-300">Contáctame</a>
+                    <a href="#projects" class="glow-button px-6 py-3 border border-blue-500 rounded-lg font-medium hover:bg-blue-500/10 transition-all duration-300">Ver proyectos</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
+                <img src="img/Logo.png" alt="Nestor Steven Piraquive Garzón" class="hero-image rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto glass-section rounded-3xl my-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Sobre <span class="gradient-text">mí</span></h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-8"></div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-2/5 mb-10 md:mb-0 flex justify-center" data-aos="fade-up-scale" data-aos-duration="800" data-aos-delay="200">
+                <img src="img/Perfil.jpg" alt="Sobre mí" class="about-image rounded-2xl w-80 h-80 md:w-96 md:h-96 object-cover shadow-xl">
+            </div>
+            <div class="md:w-3/5 md:pl-12" data-aos="fade-left">
+                <h3 class="text-2xl font-semibold mb-6">Ingeniero de Sistemas y Computación con enfoque en desarrollo web</h3>
+                <p class="text-gray-300 mb-6">Soy estudiante de Ingeniería de Sistemas y Computación en la Universidad Nacional de Colombia. Tengo experiencia en el desarrollo de aplicaciones web frontend con JavaScript, React.js y Next.js, así como en desarrollo backend con Python y Java. He participado en proyectos académicos y profesionales, liderando el desarrollo de interfaces de usuario intuitivas y funcionales, con habilidades sólidas en bases de datos relacionales, Docker y Kubernetes.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card-hover bg-slate-700/50 p-6 rounded-xl">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center mr-3 pulse-icon">
+                                <i class="fas fa-code text-white"></i>
+                            </div>
+                            <h4 class="font-semibold">Desarrollo Full Stack</h4>
+                        </div>
+                        <p class="text-gray-300 text-sm">Desarrollo completo de aplicaciones web desde el frontend hasta el backend usando diferentes arquitecturas, patrones y estilos arquitectónicos.</p>
+                    </div>
+                    
+                    <div class="card-hover bg-slate-700/50 p-6 rounded-xl">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center mr-3 pulse-icon">
+                                <i class="fas fa-graduation-cap text-white"></i>
+                            </div>
+                            <h4 class="font-semibold">Formación Académica</h4>
+                        </div>
+                        <p class="text-gray-300 text-sm">Ingeniería de Sistemas y Computación - Universidad Nacional de Colombia</p>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <a href="./hoja de vida Nestor Steven Piraquive Garzon.pdf" target="_blank" class="inline-flex items-center text-blue-400 hover:text-blue-300">
+                        <span>Descargar CV</span>
+                        <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Mis <span class="gradient-text">habilidades</span></h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-8"></div>
+            <p class="max-w-2xl mx-auto text-gray-300">Tecnologías y herramientas que domino para crear aplicaciones web completas y eficientes.</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <!-- Frontend Skills -->
+            <div class="card-hover bg-slate-800/50 p-6 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center mr-3 pulse-icon">
+                        <i class="fab fa-react text-blue-400"></i>
+                    </div>
+                    <h3 class="font-semibold">Frontend</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-blue-400">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <span>React.js</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-blue-400">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <span>Next.js</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-blue-400">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-blue-400">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <span>HTML5</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Backend Skills -->
+            <div class="card-hover bg-slate-800/50 p-6 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center mr-3 pulse-icon">
+                        <i class="fas fa-server text-green-400"></i>
+                    </div>
+                    <h3 class="font-semibold">Backend</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-green-400">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <span>Java</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-green-400">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <span>Python</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-green-400">
+                            <i class="fab fa-r-project"></i>
+                        </div>
+                        <span>R</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-green-400">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <span>Microservicios</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Database Skills -->
+            <div class="card-hover bg-slate-800/50 p-6 rounded-xl" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center mr-3 pulse-icon">
+                        <i class="fas fa-database text-purple-400"></i>
+                    </div>
+                    <h3 class="font-semibold">Bases de Datos</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-purple-400">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <span>SQL</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-purple-400">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <span>PostgreSQL</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-purple-400">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <span>MongoDB</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-purple-400">
+                            <i class="fas fa-table"></i>
+                        </div>
+                        <span>Relacionales</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Herramientas -->
+            <div class="card-hover bg-slate-800/50 p-6 rounded-xl" data-aos="fade-up" data-aos-delay="400">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center mr-3 pulse-icon">
+                        <i class="fas fa-cubes text-yellow-400"></i>
+                    </div>
+                    <h3 class="font-semibold">DevOps & Cloud</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-yellow-400">
+                            <i class="fab fa-docker"></i>
+                        </div>
+                        <span>Docker</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-yellow-400">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <span>Kubernetes</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-yellow-400">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <span>Git</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="tech-icon w-6 h-6 mr-2 text-yellow-400">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <span>GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto glass-section rounded-3xl my-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Mis <span class="gradient-text">proyectos</span></h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-8"></div>
+            <p class="max-w-2xl mx-auto text-gray-300">Algunos de mis proyectos que demuestran mis habilidades en desarrollo full stack y mi capacidad para crear soluciones completas.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Proyecto 1 -->
+            <div class="project-card h-80" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-inner relative w-full h-full">
+                    <div class="project-front absolute w-full h-full bg-slate-700/50 rounded-xl p-6 flex flex-col">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-comments text-purple-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Plataforma Foro ASky</h3>
+                        </div>
+                        <img src="img/ASKY.png" alt="Foro Web" class="w-full h-32 object-cover rounded-lg mb-4">
+                        <p class="text-gray-300 text-sm flex-grow">Desarrollo completo del frontend para plataforma web tipo foro con conexion a API Auth0 y pasarela de pagos.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">React.js</span>
+                            <span class="text-xs bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded">Next.js</span>
+                            <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">Frontend</span>
+                        </div>
+                    </div>
+                    <div class="project-back absolute w-full h-full bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-xl p-6 flex flex-col justify-center items-center text-center">
+                        <h3 class="text-xl font-semibold mb-4">Detalles del Proyecto</h3>
+                        <p class="text-gray-300 text-sm mb-4">Plataforma completa de foro con interfaz moderna y funcionalidades avanzadas.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/nestors11/ASKY-frontend.git" target="_blank" class="glow-button px-4 py-2 bg-blue-500 rounded-lg text-sm hover:bg-blue-600 transition-all">Repositorio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Proyecto 2 -->
+            <div class="project-card h-80" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-inner relative w-full h-full">
+                    <div class="project-front absolute w-full h-full bg-slate-700/50 rounded-xl p-6 flex flex-col">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-car text-green-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Sistema CarWash</h3>
+                        </div>
+                        <img src="img/Carwash.jpg" alt="Car Wash System" class="w-full h-32 object-cover rounded-lg mb-4">
+                        <p class="text-gray-300 text-sm flex-grow">Sistema de gestión para autolavado: empleados, facturación y reportes empresariales.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">Gestión</span>
+                            <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">Facturación</span>
+                            <span class="text-xs bg-purple-500/20 text-purple-400 px-2 py-1 rounded">Reportes</span>
+                        </div>
+                    </div>
+                    <div class="project-back absolute w-full h-full bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-xl p-6 flex flex-col justify-center items-center text-center">
+                        <h3 class="text-xl font-semibold mb-4">Detalles del Proyecto</h3>
+                        <p class="text-gray-300 text-sm mb-4">Sistema empresarial completo con administración de empleados y generación de reportes.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/nestors11/Carwash.git" target="_blank" class="glow-button px-4 py-2 bg-blue-500 rounded-lg text-sm hover:bg-blue-600 transition-all">Repositorio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Proyecto 3 -->
+            <div class="project-card h-80" data-aos="fade-up" data-aos-delay="400">
+                <div class="project-inner relative w-full h-full">
+                    <div class="project-front absolute w-full h-full bg-slate-700/50 rounded-xl p-6 flex flex-col">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center mr-3">
+                                <i class="fas fa-graduation-cap text-orange-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Sistema Calificaciones Gradex</h3>
+                        </div>
+                        <img src="img/Gradex.png" alt="Sistema Calificaciones" class="w-full h-32 object-cover rounded-lg mb-4">
+                        <p class="text-gray-300 text-sm flex-grow">Microservicios (Java, Python, Go), frontend web y desktop con Next.js y Electron.js.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="text-xs bg-orange-500/20 text-orange-400 px-2 py-1 rounded">Microservicios</span>
+                            <span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">Docker</span>
+                            <span class="text-xs bg-purple-500/20 text-purple-400 px-2 py-1 rounded">Kubernetes</span>
+                        </div>
+                    </div>
+                    <div class="project-back absolute w-full h-full bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-xl p-6 flex flex-col justify-center items-center text-center">
+                        <h3 class="text-xl font-semibold mb-4">Detalles del Proyecto</h3>
+                        <p class="text-gray-300 text-sm mb-4">Arquitectura completa con contenedores Docker y despliegue en Kubernetes. Frontend web y desktop.</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/nestors11/Gradex.git" target="_blank" class="glow-button px-4 py-2 bg-blue-500 rounded-lg text-sm hover:bg-blue-600 transition-all">Repositorio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+           
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Contácta<span class="gradient-text">me</span></h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-8"></div>
+            <p class="max-w-2xl mx-auto text-gray-300">¿Tienes un proyecto en mente o quieres trabajar juntos? Envíame un mensaje y te responderé lo antes posible.</p>
+        </div>
+        
+        <div class="flex flex-col md:flex-row gap-12">
+            <div class="md:w-1/2" data-aos="fade-right">
+                <div class="card-hover glass-section p-8 rounded-2xl">
+                    <h3 class="text-xl font-semibold mb-6">Información de contacto</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-blue-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-300">Correo electrónico</h4>
+                                <a href="mailto:npiraquive@unal.edu.co" class="text-blue-400 hover:text-blue-300">npiraquive@unal.edu.co</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center mr-4">
+                                <i class="fas fa-phone-alt text-purple-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-300">Teléfono</h4>
+                                <a href="tel:+573216407277" class="text-blue-400 hover:text-blue-300">+57 321 640 7277</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-green-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-300">Ubicación</h4>
+                                <p class="text-gray-300">Bogotá, Colombia</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <h4 class="font-medium text-gray-300 mb-4">Sígueme</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://linkedin.com/in/Nestor-Piraquive" target="_blank" class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center hover:bg-blue-500 transition-all">
+                                <i class="fab fa-linkedin-in text-white"></i>
+                            </a>
+                            <a href="https://github.com/nestors11" class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center hover:bg-purple-500 transition-all">
+                                <i class="fab fa-github text-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2" data-aos="fade-left">
+                <div class="card-hover glass-section p-8 rounded-2xl">
+                    <h3 class="text-xl font-semibold mb-6">Envíame un mensaje</h3>
+                    
+                    <form id="contactForm" class="space-y-6">
+                        <div class="form-field">
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Nombre</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tu nombre" required>
+                            <div class="error-message" id="nameError" style="display: none;"></div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Correo electrónico</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="tu@email.com" required>
+                            <div class="error-message" id="emailError" style="display: none;"></div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Asunto</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="¿Sobre qué quieres hablar?" required>
+                            <div class="error-message" id="subjectError" style="display: none;"></div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tu mensaje" required></textarea>
+                            <div class="error-message" id="messageError" style="display: none;"></div>
+                        </div>
+                        
+                        <button type="submit" id="submitBtn" class="glow-button w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-medium hover:opacity-90 transition-all duration-300">
+                            <span id="btnText">Enviar mensaje</span>
+                            <div id="loadingSpinner" class="loading-spinner" style="display: none;"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 bg-slate-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-2xl font-bold gradient-text">Nestor Steven Piraquive Garzon</span>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex space-x-6 mb-4">
+                        <a href="https://linkedin.com/in/Nestor-Piraquive" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/nestors11" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">© 2025 Nestor Steven Piraquive Garzon. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de confirmación -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8 text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">¡Mensaje enviado!</h3>
+            <p class="text-gray-300 mb-6">Gracias por contactarme. Te responderé lo antes posible.</p>
+            <button id="closeModal" class="glow-button px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-medium hover:opacity-90 transition-all duration-300">
+                Cerrar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Form validation and submission
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const successModal = document.getElementById('successModal');
+        const closeModal = document.getElementById('closeModal');
+
+        // Validation functions
+        function validateName(name) {
+            if (!name || name.trim().length < 2) {
+                return 'El nombre debe tener al menos 2 caracteres';
+            }
+            if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(name.trim())) {
+                return 'El nombre solo puede contener letras y espacios';
+            }
+            return null;
+        }
+
+        function validateEmail(email) {
+            if (!email) {
+                return 'El correo electrónico es obligatorio';
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                return 'Por favor, ingresa un correo electrónico válido';
+            }
+            return null;
+        }
+
+        function validateSubject(subject) {
+            if (!subject || subject.trim().length < 3) {
+                return 'El asunto debe tener al menos 3 caracteres';
+            }
+            if (subject.trim().length > 100) {
+                return 'El asunto no puede exceder 100 caracteres';
+            }
+            return null;
+        }
+
+        function validateMessage(message) {
+            if (!message || message.trim().length < 10) {
+                return 'El mensaje debe tener al menos 10 caracteres';
+            }
+            if (message.trim().length > 1000) {
+                return 'El mensaje no puede exceder 1000 caracteres';
+            }
+            return null;
+        }
+
+        // Show error message
+        function showError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorElement = document.getElementById(fieldId + 'Error');
+            const formField = field.closest('.form-field');
+            
+            field.classList.add('error');
+            field.classList.remove('success');
+            formField.classList.add('error');
+            formField.classList.remove('success');
+            
+            errorElement.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 mr-1 flex-shrink-0">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                ${message}
+            `;
+            errorElement.style.display = 'flex';
+        }
+
+        // Show success state
+        function showSuccess(fieldId) {
+            const field = document.getElementById(fieldId);
+            const errorElement = document.getElementById(fieldId + 'Error');
+            const formField = field.closest('.form-field');
+            
+            field.classList.remove('error');
+            field.classList.add('success');
+            formField.classList.remove('error');
+            formField.classList.add('success');
+            
+            errorElement.style.display = 'none';
+        }
+
+        // Clear error state
+        function clearError(fieldId) {
+            const field = document.getElementById(fieldId);
+            const errorElement = document.getElementById(fieldId + 'Error');
+            const formField = field.closest('.form-field');
+            
+            field.classList.remove('error', 'success');
+            formField.classList.remove('error', 'success');
+            errorElement.style.display = 'none';
+        }
+
+        // Real-time validation
+        document.getElementById('name').addEventListener('input', function() {
+            const error = validateName(this.value);
+            if (error) {
+                showError('name', error);
+            } else if (this.value.trim()) {
+                showSuccess('name');
+            } else {
+                clearError('name');
+            }
+        });
+
+        document.getElementById('email').addEventListener('input', function() {
+            const error = validateEmail(this.value);
+            if (error) {
+                showError('email', error);
+            } else if (this.value.trim()) {
+                showSuccess('email');
+            } else {
+                clearError('email');
+            }
+        });
+
+        document.getElementById('subject').addEventListener('input', function() {
+            const error = validateSubject(this.value);
+            if (error) {
+                showError('subject', error);
+            } else if (this.value.trim()) {
+                showSuccess('subject');
+            } else {
+                clearError('subject');
+            }
+        });
+
+        document.getElementById('message').addEventListener('input', function() {
+            const error = validateMessage(this.value);
+            if (error) {
+                showError('message', error);
+            } else if (this.value.trim()) {
+                showSuccess('message');
+            } else {
+                clearError('message');
+            }
+        });
+
+        // Form submission
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const name = formData.get('name').trim();
+            const email = formData.get('email').trim();
+            const subject = formData.get('subject').trim();
+            const message = formData.get('message').trim();
+            
+            // Validate all fields
+            const nameError = validateName(name);
+            const emailError = validateEmail(email);
+            const subjectError = validateSubject(subject);
+            const messageError = validateMessage(message);
+            
+            let hasErrors = false;
+            
+            // Show errors if any
+            if (nameError) {
+                showError('name', nameError);
+                hasErrors = true;
+            } else {
+                showSuccess('name');
+            }
+            
+            if (emailError) {
+                showError('email', emailError);
+                hasErrors = true;
+            } else {
+                showSuccess('email');
+            }
+            
+            if (subjectError) {
+                showError('subject', subjectError);
+                hasErrors = true;
+            } else {
+                showSuccess('subject');
+            }
+            
+            if (messageError) {
+                showError('message', messageError);
+                hasErrors = true;
+            } else {
+                showSuccess('message');
+            }
+            
+            if (hasErrors) {
+                // Scroll to first error
+                const firstError = document.querySelector('.form-field.error');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            loadingSpinner.style.display = 'inline-block';
+            
+            // Simulate form submission (replace with actual submission logic)
+            setTimeout(() => {
+                // Reset form
+                contactForm.reset();
+                
+                // Clear all success states
+                ['name', 'email', 'subject', 'message'].forEach(clearError);
+                
+                // Reset button
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                loadingSpinner.style.display = 'none';
+                
+                // Show success modal
+                showModal();
+            }, 2000);
+        });
+
+        // Modal functions
+        function showModal() {
+            successModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideModal() {
+            successModal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal events
+        closeModal.addEventListener('click', hideModal);
+        
+        successModal.addEventListener('click', function(e) {
+            if (e.target === successModal) {
+                hideModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && successModal.classList.contains('show')) {
+                hideModal();
+            }
+        });
+        
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                
+                // Random colors for particles
+                const colors = ['rgba(59, 130, 246, 0.5)', 'rgba(139, 92, 246, 0.5)', 'rgba(6, 182, 212, 0.5)', 'rgba(16, 185, 129, 0.5)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles
+        createParticles();
+        
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Add shadow to navbar on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-xl');
+                navbar.style.background = 'rgba(15, 23, 42, 0.85)';
+                navbar.style.backdropFilter = 'blur(20px)';
+                navbar.style.borderColor = 'rgba(59, 130, 246, 0.2)';
+            } else {
+                navbar.classList.remove('shadow-xl');
+                navbar.style.background = 'rgba(51, 65, 85, 0.4)';
+                navbar.style.backdropFilter = 'blur(16px)';
+                navbar.style.borderColor = 'rgba(71, 85, 105, 0.3)';
+            }
+        });
+        
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-image');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+        
+        // Add interactive cursor effect
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.querySelector('.cursor');
+            if (!cursor) {
+                const newCursor = document.createElement('div');
+                newCursor.className = 'cursor';
+                newCursor.style.cssText = `
+                    position: fixed;
+                    width: 20px;
+                    height: 20px;
+                    background: radial-gradient(circle, rgba(59, 130, 246, 0.8), transparent);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    transition: transform 0.1s ease;
+                `;
+                document.body.appendChild(newCursor);
+            }
+            
+            const cursorElement = document.querySelector('.cursor');
+            cursorElement.style.left = e.clientX - 10 + 'px';
+            cursorElement.style.top = e.clientY - 10 + 'px';
+        });
+    </script>
+</body>
+</html>
