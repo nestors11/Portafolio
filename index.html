@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
@@ -954,7 +955,7 @@
                 </svg>
             </div>
             <h3 class="text-xl font-semibold text-white mb-2">¡Mensaje enviado!</h3>
-            <p class="text-gray-300 mb-6">Gracias por contactarme. Te responderé lo antes posible.</p>
+            <p class="text-gray-300 mb-6">Tu mensaje ha sido enviado exitosamente. Te responderé lo antes posible a tu correo electrónico.</p>
             <button id="closeModal" class="glow-button px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-medium hover:opacity-90 transition-all duration-300">
                 Cerrar
             </button>
@@ -968,6 +969,11 @@
             easing: 'ease-in-out',
             once: true
         });
+
+        // Initialize EmailJS
+        (function(){
+            emailjs.init("2ocxOoiaHwXFlUxT7"); 
+        })();
 
         // Form validation and submission
         const contactForm = document.getElementById('contactForm');
@@ -1170,22 +1176,46 @@
             btnText.style.display = 'none';
             loadingSpinner.style.display = 'inline-block';
             
-            // Simulate form submission (replace with actual submission logic)
-            setTimeout(() => {
-                // Reset form
-                contactForm.reset();
-                
-                // Clear all success states
-                ['name', 'email', 'subject', 'message'].forEach(clearError);
-                
-                // Reset button
-                submitBtn.disabled = false;
-                btnText.style.display = 'inline';
-                loadingSpinner.style.display = 'none';
-                
-                // Show success modal
-                showModal();
-            }, 2000);
+            // Prepare template parameters for EmailJS
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                subject: subject,
+                message: message,
+                to_email: 'nespir34@gmail.com'
+            };
+            
+            // Send email using EmailJS
+            emailjs.send('service_adrm3mg', 'template_rr3noqv', templateParams)
+                .then(function(response) {
+                    console.log('Email enviado exitosamente:', response.status, response.text);
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Clear all success states
+                    ['name', 'email', 'subject', 'message'].forEach(clearError);
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    btnText.style.display = 'inline';
+                    loadingSpinner.style.display = 'none';
+                    
+                    // Show success modal
+                    showModal();
+                    
+                })
+                .catch(function(error) {
+                    console.error('Error al enviar email:', error);
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    btnText.style.display = 'inline';
+                    loadingSpinner.style.display = 'none';
+                    
+                    // Show error message
+                    alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente o contáctame directamente a nespir34@gmail.com');
+                });
         });
 
         // Modal functions
